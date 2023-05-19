@@ -9,9 +9,9 @@ from core.settings import OPENAI_API, ENABLE_AI
 
 if ENABLE_AI:
     print(ENABLE_AI)
-    import numpy as np
-    from sentence_transformers import SentenceTransformer
-    sentencemodel = SentenceTransformer('sentence-transformers/all-mpnet-base-v1')
+    #import numpy as np
+    #from sentence_transformers import SentenceTransformer
+    #sentencemodel = SentenceTransformer('sentence-transformers/all-mpnet-base-v1')
 else:
     pass
     

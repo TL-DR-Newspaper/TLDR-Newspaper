@@ -5,5 +5,9 @@
   "nginx": {
     "image": ":tldrnews.nginx.latest",
     "ports": {"80": "HTTP"}
+  },
+  "redis-cache": {
+    "image": "redis/redis-stack:latest",
+    "ports": {"6379": "HTTP", "8001":"HTTP"}
   }
 }

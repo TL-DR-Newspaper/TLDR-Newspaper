@@ -2,16 +2,20 @@ from django.shortcuts import render, redirect
 from .models import Article
 from newssources.models import Source
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import cache_page
+
 
 
 
 # Create your views here.
+@cache_page(60 * 15)
 def article_by_slug(request, slug):
     article = Article.objects.filter(slug=slug).last()
     sources = article.sources.all()
     context = {'article':article, 'sources':sources}
     return render(request, "article_index.html", context)
 
+@cache_page(60 * 15)
 def article_by_id(request, id):
     article = Article.objects.get(id=id)
     sources = article.sources.all()
