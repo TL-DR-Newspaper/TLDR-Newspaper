@@ -8,8 +8,8 @@ from core.settings import OPENAI_API, ENABLE_AI
 
 
 if ENABLE_AI:
-    print(ENABLE_AI)
-    #import numpy as np
+    #print(ENABLE_AI)
+    ##import numpy as np
     #from sentence_transformers import SentenceTransformer
     #sentencemodel = SentenceTransformer('sentence-transformers/all-mpnet-base-v1')
 else:
@@ -23,7 +23,7 @@ NUMBER_OF_SOURCES = 10000
 PROMPT_TITLE = "this is a list of news headlines. Please summarize them into 1 catchy headline: "
 PROMPT_SUMMARY = 'This is a list of newspaper articles about the same topic. Please summarize them into 1 paragraph: '
 PROMPT_DIFFERENCES = 'List the key differences between the authors in the list: '
-PROMPT_CONTENT = 'Rewrite this article in your own words: '
+PROMPT_CONTENT = 'Rewrite this article as a newspaper article of 2 paragraphs: '
 openai.api_key = OPENAI_API
 
 def text_generator(input):
