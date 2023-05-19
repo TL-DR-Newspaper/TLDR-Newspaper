@@ -32,7 +32,7 @@ def get_news(request):
     i = 1
     go = True
     while go:
-        goperigon = 'https://api.goperigon.com/v1/all?apiKey='+NEWS_API_KEY+'&from=2023-05-16&to=2023-05-17&language=en&sourceGroup=top10&showNumResults=true&showReprints=false&excludeLabel=Non-news&excludeLabel=Opinion&excludeLabel=PaidNews&excludeLabel=Roundup&excludeLabel=PressRelease&sortBy=date&page='+str(i)
+        goperigon = 'https://api.goperigon.com/v1/all?apiKey='+NEWS_API_KEY+'&from=2023-05-19&to=2023-05-20&language=en&sourceGroup=top10&showNumResults=true&showReprints=false&excludeLabel=Non-news&excludeLabel=Opinion&excludeLabel=PaidNews&excludeLabel=Roundup&excludeLabel=PressRelease&sortBy=date&page='+str(i)
         print(i)
         save_news(goperigon)
         i = i+1

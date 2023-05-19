@@ -38,6 +38,7 @@ jobs:
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+          envkey_NEWS_API_KEY: ${{ secrets.GOPERIGON_API_KEY }}
           envkey_GOPERIGON_API_KEY: ${{ secrets.GOPERIGON_API_KEY }}
           envkey_REDDIT_USER_AGENT: ${{ secrets.REDDIT_USER_AGENT }}
           envkey_REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
