@@ -30,9 +30,10 @@ def article_by_id(request, id):
 
 @login_required
 def unpublish_article(request, slug):
-    article = Article.objects.filter(slug=slug).last()
-    article.published = False
-    article.save()
+    articles = Article.objects.filter(slug=slug)
+    for article in articles:
+        article.published = False
+        article.save()
     return redirect('/')
 
 @login_required
