@@ -16,6 +16,7 @@ class Article(models.Model):
     slug = models.SlugField(blank=True, max_length=500)
     published = models.BooleanField(default=False)
     created_by_ai = models.BooleanField(default=False)
+    views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title

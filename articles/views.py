@@ -12,6 +12,9 @@ from django.views.decorators.cache import cache_page
 def article_by_slug(request, slug):
     article = Article.objects.filter(slug=slug).last()
     sources = article.sources.all()
+    views = article.views
+    article.views = views + 1
+    article.save()
     context = {'article':article, 'sources':sources}
     return render(request, "article_index.html", context)
 
@@ -19,6 +22,8 @@ def article_by_slug(request, slug):
 def article_by_id(request, id):
     article = Article.objects.get(id=id)
     sources = article.sources.all()
+    article.views = article.views + 1
+    article.save()
     context = {'article':article, 'sources':sources}
     return render(request, "article_index.html", context)
 

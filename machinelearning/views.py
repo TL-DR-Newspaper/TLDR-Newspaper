@@ -9,7 +9,7 @@ from core.settings import OPENAI_API, ENABLE_AI
 
 if ENABLE_AI:
     print(ENABLE_AI)
-    ##import numpy as np
+    #import numpy as np
     #from sentence_transformers import SentenceTransformer
     #sentencemodel = SentenceTransformer('sentence-transformers/all-mpnet-base-v1')
 else:
@@ -62,7 +62,7 @@ def analyse(request):
                     existing_article.save() #save
                 else: #if it does not exist create a new article
                     new_article = Article( 
-                        title = sources[i].title.strip('\"'),
+                        title = sources[i].title,
                         imageurl = sources[i].urltoimage,
                         summary = sources[i].content,
                         comparison = sources[i].description,             

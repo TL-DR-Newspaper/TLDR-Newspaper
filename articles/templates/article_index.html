@@ -1,8 +1,9 @@
 {% extends "base.html" %}
-{% block title %}{{article.title}}{% endblock %}
 {% block meta %}
     {% include 'meta.html' with article=article sources=sources %}
 {% endblock meta %}
+{% block title %}{{article.title}}{% endblock %}
+
 {% block content%}
 <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900">
 
