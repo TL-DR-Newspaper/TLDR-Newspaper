@@ -15,4 +15,4 @@ django-storages
 openai
 praw
 #scikit-learn
-resis
+redis
