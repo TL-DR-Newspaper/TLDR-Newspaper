@@ -43,7 +43,7 @@ def analyse(request):
         j = 0  #To keep track of which item we're comparing to i 
         for source in embeddings: #comparing all entries for j against i. 
             print("Comparing : ", i, 'and', j ) #Keeping track of where we are
-            #similarity = np.dot(embeddings[i], embeddings[j], out=None) #Here we compare
+            similarity = np.dot(embeddings[i], embeddings[j], out=None) #Here we compare
             if similarity >= MIN_SIMILARITY and similarity <= MAX_SIMILARITY: #If they are similar
                 article1 = sources[i] #then these are the indexes 
                 article2 = sources[j]

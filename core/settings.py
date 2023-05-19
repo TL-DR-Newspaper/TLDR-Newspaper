@@ -23,11 +23,17 @@ environ.Env.read_env()
 
 # ENV Variables
 SECRET_KEY = env("DJANGO_SECRET_KEY")
-NEWS_API_KEY = env("GOPERIGON_API_KEY")
+NEWS_API_KEY = env("NEWS_API_KEY")
 OPENAI_API = env("OPENAI_API_KEY")
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = ['tldrnewspaper.com', 'www.tldrnewspaper.com', 'localhost', '127.0.0.1', ' tldrnews.vdotvo9a4e2a6.eu-central-1.cs.amazonlightsail.com']
+ALLOWED_HOSTS = ['tldrnewspaper.com', 
+                    'www.tldrnewspaper.com', 
+                    'localhost', 
+                    '127.0.0.1', 
+                    'tldrnews.vdotvo9a4e2a6.eu-central-1.cs.amazonlightsail.com',
+                    'triage.tldrnewspaper.com']
+
 STATIC_ROOT = "static/"
 
 # Application definition

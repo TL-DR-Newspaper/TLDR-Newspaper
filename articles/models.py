@@ -7,12 +7,12 @@ from django.utils.text import slugify
 # Create your models here.
 class Article(models.Model):
     pubdate = models.DateTimeField(auto_now_add=True)
-    title = models.TextField()
-    imageurl = models.URLField()
-    summary = models.TextField()
-    comparison = models.TextField()
+    title = models.TextField(max_length=500)
+    imageurl = models.URLField(blank=True,max_length=5000)
+    summary = models.TextField(blank=True, null=True, max_length=50000)
+    comparison = models.TextField(max_length=50000)
     sources = models.ManyToManyField(Source)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True, max_length=500)
     published = models.BooleanField(default=False)
     created_by_ai = models.BooleanField(default=False)
 
