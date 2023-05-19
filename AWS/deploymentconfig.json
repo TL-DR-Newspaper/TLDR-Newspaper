@@ -1,0 +1,9 @@
+{"tl-dr-newspaper": {
+  "image": ":tldrnews.tldrnews.latest",
+  "ports": {"8000": "HTTP"}
+  },
+  "nginx": {
+    "image": ":tldrnews.nginx.latest",
+    "ports": {"80": "HTTP"}
+  }
+}

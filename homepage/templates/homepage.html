@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}TLDR Newspaper{% endblock %}
+{% block content%}
+{% block meta %}
+
+  <!-- HTML Meta Tags -->
+  <meta name="description" content="Breaking news in TL:DR format written by AI">
+
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content="https://tldrnewspaper.com">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="News in TL:DR format written by AI">
+  <meta property="og:description" content="Breaking news in TL:DR format written by AI">
+  <meta property="og:image" content="{% static 'images/logo.png' %}">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:domain" content="mapmaker.nl">
+  <meta property="twitter:url" content="https://tldrnewspaper.com">
+  <meta name="twitter:title" content="News in TL:DR format written by AI">
+  <meta name="twitter:description" content="Breaking news in TL:DR format written by AI">
+  <meta name="twitter:image" content="{% static 'images/logo.png' %}">
+
+  <!-- Meta Tags Generated via https://www.opengraph.xyz -->
+        
+{% endblock meta %}
+
+{% include 'homepage_hero.html' with hero=hero %}
+
+{% include 'homepage_highlighted.html' with highlighted=highlighted %}
+
+{% include 'homepage_frontpage.html' with frontpage=frontpage %}
+
+{% include 'homepage_older.html' with older=older %}
+
+
+{% endblock%}

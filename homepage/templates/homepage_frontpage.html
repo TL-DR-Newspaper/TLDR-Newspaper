@@ -1,0 +1,27 @@
+<aside aria-label="Related articles" class="py-8 lg:py-24 bg-gray-50 dark:bg-gray-800">
+    <div class="px-4 mx-auto max-w-screen-xl">
+        <h2 class="mb-8 text-2xl font-bold text-gray-900 dark:text-white">Front page</h2>
+        <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+            {% for article in frontpage %}
+
+            <article class="max-w-xs">
+                <a href="/article/{{article.slug}}">
+                    <figure class="max-w-lg">
+                        <img class="rounded-lg m-4" src="{{article.sources.last.urltoimage}}" alt="{{hero.sources.last.title}} image">
+                        {% if hero.sources.last.sourcename %}
+                        <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">Image credit: {{article.sources.last.sourcename}}</figcaption>
+                        {% endif %}
+                      </figure>
+                </a>
+                <h2 class="mb-2 text-xl font-bold leading-tight text-gray-900 dark:text-white">
+                    <a href="/article/{{article.slug}}">{{article.title|truncatechars:75}}</a>
+                </h2>
+                <p class="mb-4 font-light text-gray-500 dark:text-gray-400">{{article.summary|truncatechars:100}}</p>
+                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{article.sources.count}} sources</span>
+            </article>
+            {% endfor %}
+
+        </div>
+    </div>
+    
+  </aside>

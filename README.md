@@ -1,2 +1,2 @@
-# TLDR-Newspaper
-Newsplatform for TLDR Newspaper
+# homepage
+News site

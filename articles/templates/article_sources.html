@@ -1,0 +1,54 @@
+{% load humanize %}
+<div class="relative mt-4 overflow-x-auto shadow-md sm:rounded-lg">
+    
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Source
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Outlet
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Publication date
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for source in sources %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                
+                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                    <a href="{{source.url}}">
+                        <img class="w-10 h-10 rounded-full" src="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url={{source.url}}/&size=64" alt="Jese image">
+                    </a>
+                    <div class="pl-3" >
+                        <a href="{{source.url}}">
+                        <div class="text-base font-semibold" data-tooltip-target="tooltip-default-{{source.id}}">{{source.title|truncatechars:25}}</div>
+                        <div data-tooltip-target="tooltip-default-{{source.author}}"class="font-normal text-gray-500">By: {{source.author|truncatechars:25}}</div>
+                        </a>
+                    </div>
+                    <div id="tooltip-default-{{source.id}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                        {{source.title}}
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div> 
+                    <div id="tooltip-default-{{source.author}}" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                        {{source.author}}
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div> 
+                </th>
+                <td class="px-6 py-4">
+                    {{source.sourcename}}
+                </td>
+                <td class="px-6 py-4">
+                    <div class="flex items-center">
+                        {{source.publishedAt|naturaltime}}
+                    </div>
+                </td>
+            </a>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

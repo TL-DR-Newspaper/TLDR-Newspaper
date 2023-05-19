@@ -1,0 +1,37 @@
+{% load humanize %}
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
+        <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Latest news</h2>
+            <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Explore the latest news in TL:DR format. We summarize news from 60.000 outlets with our bias-free AI.</p>
+        </div> 
+        
+        <div class="grid gap-4 mb-4 lg:mb-16 md:grid-cols-2">
+            {% for article in highlighted %}
+            <div class="items-center bg-gray-50rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
+                <a href="/article/{{article.slug}}">
+                    <figure class="max-w-lg">
+                        <img class="rounded-lg mx-4" src="{{article.sources.last.urltoimage}}" alt="{{article.sources.last.title}} image">
+                        {% if hero.sources.last.sourcename %}
+                        <figcaption class="m-2 text-sm text-center text-gray-500 dark:text-gray-400">Image credit: {{article.sources.last.sourcename}}</figcaption>
+                        {% endif %}
+                    </figure>
+                </a>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <a href="/article/{{article.slug}}">{{article.title|truncatechars:75}}</a>
+                    </h3>
+                    <span class="text-gray-500 dark:text-gray-400">{{article.pubdate|naturaltime}}</span>
+                    <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">{{article.summary|truncatechars:100}}</p>
+                    <ul class="flex space-x-4 sm:mt-0">
+                        <li>
+                            <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{{article.sources.count}} Sources</span>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+            {% endfor %}
+            </div>  
+        </div>  
+    </div>
+  </section>

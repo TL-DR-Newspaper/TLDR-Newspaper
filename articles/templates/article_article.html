@@ -1,0 +1,72 @@
+{% load static %}
+
+
+<main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 dark:text-white">
+    <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
+        
+        <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+            <header class="mb-4 lg:mb-6 not-format">
+                
+                <address class="flex items-center mb-6 not-italic">
+                    <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+                        <img class="mr-4 w-16 h-16 rounded-full" src="{% static 'images/logo.png' %}" alt="TL:DR Bot avatar">
+                        <div>
+                            <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">Too long, Did not read</a>
+                            <p class="text-base font-light text-gray-500 dark:text-gray-400">TL:DR Newspaper collects news from 60.000 sources and summarizes the news for you in TL:DR format .</p>
+                        </div>
+                    </div>
+                </address>
+
+                {% if user.is_authenticated %}
+                <a href="/article/{{article.slug}}/edit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</a>
+                <a href="/article/{{article.slug}}/unpublish" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Unpublish</a>
+                <a href="/article/{{article.slug}}/next" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Next</a>
+                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown2" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Post to reddit <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                <!-- Dropdown menu -->
+                <div id="dropdown2" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                    <li>
+                        <a href="/social/reddit/news/{{article.id}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">News</a>
+                    </li>
+                    <li>
+                        <a href="/social/reddit/USNEWS/{{article.id}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">USNEWS</a>
+                    </li>
+                    <li>
+                        <a href="/social/reddit/worldnews/{{article.id}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">worldnews</a>
+                    </li>
+
+                    </ul>
+                </div>
+
+
+
+                <br><br>
+                {% endif %}
+
+                <figure class="max-w-full">
+                    <img class="rounded-lg" src="{{article.sources.last.urltoimage}}" alt="{{article.sources.last.title}} image">
+                    {% if hero.sources.last.sourcename %}
+                    <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">Image credit: {{article.sources.last.sourcename}}</figcaption>
+                    {% endif %}
+                </figure>
+            <h1 class="my-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{{article.title}}</h1>
+            <p class="text-base font-light text-gray-500 dark:text-gray-400"><time pubdate datetime="{{article.pubdate}}" title="February 8th, 2022">{{article.pubdate}}</time></p>
+
+            <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Summary</span>
+
+        </header>
+        <a href="https://www.buymeacoffee.com/petervd"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=petervd&button_colour=1A56DB&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
+        <div class="mt-6 p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <a href="/">
+                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Article</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{article.summary| linebreaks  }}</p>
+        </div>
+        {% include 'article_video.html' with article=article %}
+        {% include 'article_comparison.html' with article=article %}
+        {% include 'article_sources.html' with sources=sources %}
+
+        
+    
+</div>
+</main>
