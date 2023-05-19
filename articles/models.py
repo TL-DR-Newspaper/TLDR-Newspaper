@@ -11,6 +11,7 @@ class Article(models.Model):
     imageurl = models.URLField(blank=True,max_length=5000)
     summary = models.TextField(blank=True, null=True, max_length=50000)
     comparison = models.TextField(max_length=50000)
+    long_content = models.TextField(blank=True, max_length=50000)
     sources = models.ManyToManyField(Source)
     slug = models.SlugField(blank=True, max_length=500)
     published = models.BooleanField(default=False)

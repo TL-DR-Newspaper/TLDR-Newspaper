@@ -23,6 +23,7 @@ NUMBER_OF_SOURCES = 10000
 PROMPT_TITLE = "this is a list of news headlines. Please summarize them into 1 catchy headline: "
 PROMPT_SUMMARY = 'This is a list of newspaper articles about the same topic. Please summarize them into 1 paragraph: '
 PROMPT_DIFFERENCES = 'List the key differences between the authors in the list: '
+PROMPT_CONTENT = 'Rewrite this article in your own words: '
 openai.api_key = OPENAI_API
 
 def text_generator(input):
@@ -81,6 +82,7 @@ def create_summaries(request):
         print("Processing article: ", article, " - ", article.id)
         titles = []
         content = []
+        last_content = article.sources.last()
         for source in article.sources.all():
             titles.append(source.title)
         for source in article.sources.all():
@@ -88,13 +90,11 @@ def create_summaries(request):
         generated_title = text_generator(PROMPT_TITLE + str(titles))
         generated_summary = text_generator(PROMPT_SUMMARY + str(content))
         generated_differences = text_generator(PROMPT_DIFFERENCES + str(content))
-        #generated_title = "HI I AM PETER"
-        #generated_summary = 'I AM THE SUMMARY'
-        #generated_differences = 'PETER IS DIFFERENT FROM SUMMARY'
-        print(article.id)
+        generated_content = text_generator(PROMPT_CONTENT + str(last_content.content))
         article.title = generated_title
         article.summary = generated_summary
         article.comparison = generated_differences
+        article.long_content = generated_content
         article.created_by_ai = True
         article.published = True
         article.save()
