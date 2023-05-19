@@ -2,7 +2,6 @@ from django.shortcuts import render, HttpResponse
 from newssources.models import Source
 from articles.models import Article
 from django.contrib.auth.decorators import login_required
-import numpy as np
 import openai 
 from django.utils.text import Truncator
 from core.settings import OPENAI_API, ENABLE_AI
@@ -10,8 +9,9 @@ from core.settings import OPENAI_API, ENABLE_AI
 
 if ENABLE_AI:
     print(ENABLE_AI)
-    #from sentence_transformers import SentenceTransformer
-    #sentencemodel = SentenceTransformer('sentence-transformers/all-mpnet-base-v1')
+    import numpy as np
+    from sentence_transformers import SentenceTransformer
+    sentencemodel = SentenceTransformer('sentence-transformers/all-mpnet-base-v1')
 else:
     pass
     
