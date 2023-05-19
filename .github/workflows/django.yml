@@ -43,7 +43,7 @@ jobs:
           envkey_REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
           envkey_REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
           envkey_REDDIT_REFRESH_TOKEN: ${{ secrets.REDDIT_REFRESH_TOKEN }}
-          envkey_REDDIT_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          envkey_OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           envkey_DB_NAME: ${{ secrets.DB_NAME }}
           envkey_DB_USER: ${{ secrets.DB_USER }}
           envkey_DB_HOST: ${{ secrets.DB_HOST }}
