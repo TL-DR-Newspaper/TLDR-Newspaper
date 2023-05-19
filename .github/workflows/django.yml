@@ -49,6 +49,7 @@ jobs:
           envkey_DB_USER: ${{ secrets.DB_USER }}
           envkey_DB_HOST: ${{ secrets.DB_HOST }}
           envkey_DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          envkey_ENABLE_AI: False
           envkey_DEBUG: False
           directory: core
           file_name: .env

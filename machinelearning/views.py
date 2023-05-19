@@ -1,12 +1,19 @@
 from django.shortcuts import render, HttpResponse
 from newssources.models import Source
 from articles.models import Article
-#from sentence_transformers import SentenceTransformer
 from django.contrib.auth.decorators import login_required
-#import numpy as np
+import numpy as np
 import openai 
 from django.utils.text import Truncator
-from core.settings import OPENAI_API
+from core.settings import OPENAI_API, ENABLE_AI
+
+
+if ENABLE_AI:
+    from sentence_transformers import SentenceTransformer
+    sentencemodel = SentenceTransformer('sentence-transformers/all-mpnet-base-v1')
+else:
+    pass
+    
 
 
 MIN_SIMILARITY = 0.50 # Pick between -1 and + 1 
@@ -35,7 +42,7 @@ def analyse(request):
     titles = [] #Getting the titles in sentences
     for source in sources:
         titles.append(source.title)
-    #model = SentenceTransformer('sentence-transformers/all-mpnet-base-v1')
+    model = sentencemodel
     embeddings = model.encode(titles)
     print("Analysing all strings")
     i = 0 #To keep track of the item we are on

@@ -26,6 +26,7 @@ SECRET_KEY = env("DJANGO_SECRET_KEY")
 NEWS_API_KEY = env("NEWS_API_KEY")
 OPENAI_API = env("OPENAI_API_KEY")
 DEBUG = env("DEBUG")
+ENABLE_AI = env("ENABLE_AI")
 
 ALLOWED_HOSTS = ['tldrnewspaper.com', 
                     'www.tldrnewspaper.com', 
