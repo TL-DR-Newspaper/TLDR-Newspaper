@@ -3,6 +3,9 @@ from .models import Article
 from newssources.models import Source
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
+from django.http import JsonResponse
+import random
+
 
 
 
@@ -51,3 +54,20 @@ def next_article(request, slug):
         return redirect('/'+new_article.slug)
     else:
         return redirect('/')
+    
+def random_article(request):
+    articles = list(Article.objects.filter(published=True, created_by_ai=True))
+    # if you want only a single random item
+    article = random.choice(articles)
+    result = {
+        'title': article.title,
+        'description': article.summary,
+        'imageurl': article.imageurl,
+        'pubdate': article.pubdate,
+        'link': 'https://tldrnewspaper.com/article/'+article.slug,
+        'comparison': article.comparison,
+        'published': article.published,
+        'createdbyai': article.created_by_ai,
+        'views': article.views
+    }
+    return JsonResponse(result) 

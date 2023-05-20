@@ -8,4 +8,5 @@ urlpatterns = [
     path("<slug:slug>/unpublish", views.unpublish_article, name="unpublish"),
     path("<slug:slug>/edit", views.edit_article, name="edit"),
     path("<slug:slug>/next", views.next_article, name="next"),
+    path("random/json", views.random_article, name="random"),
     ]
