@@ -6,6 +6,7 @@ from django.views.decorators.cache import cache_page
 
 # Create your views here.
 #@cache_page(60 * 3)
+@cache_page(60 * 60)
 def index(request):
     articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')
     #articles = Article.objects.annotate(most_sources=Count("sources")).order_by("pubdate", "most_sources")
