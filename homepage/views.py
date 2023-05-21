@@ -5,9 +5,9 @@ from django.views.decorators.cache import cache_page
 
 
 # Create your views here.
-@cache_page(60 * 3)
+#@cache_page(60 * 3)
 def index(request):
-    articles = Article.objects.filter(published=True, created_by_ai=True).order_by('-sources')
+    articles = Article.objects.filter(published=True, created_by_ai=True).order_by('-pubdate', '-sources')
     #articles = Article.objects.annotate(most_sources=Count("sources")).order_by("most_sources")
     hero = articles[:3]
     highlighted = articles[3:21]

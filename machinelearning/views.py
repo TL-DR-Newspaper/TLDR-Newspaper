@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 import openai 
 from django.utils.text import Truncator
 from core.settings import OPENAI_API, ENABLE_AI
+from django.utils.text import slugify
+
 
 
 if ENABLE_AI:
@@ -97,6 +99,7 @@ def create_summaries(request):
         article.long_content = generated_content
         article.created_by_ai = True
         article.published = True
+        article.slug = slugify(generated_title)
         article.save()
     return HttpResponse(204)
 
