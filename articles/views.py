@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_page
 from django.http import JsonResponse
 import random
+from django.core import serializers
+from .serializer import ArticleSerializer
 
 
 
@@ -71,3 +73,11 @@ def random_article(request):
         'views': article.views
     }
     return JsonResponse(result) 
+
+
+@cache_page(60 * 15)
+def mobile_api(request):
+    articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')[:10]
+    # if you want only a single random item
+    data = ArticleSerializer(articles, many=True).data
+    return JsonResponse(data, safe=False) 

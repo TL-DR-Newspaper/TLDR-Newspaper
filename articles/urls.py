@@ -9,4 +9,5 @@ urlpatterns = [
     path("<slug:slug>/edit", views.edit_article, name="edit"),
     path("<slug:slug>/next", views.next_article, name="next"),
     path("random/json", views.random_article, name="random"),
+    path("mobileapi/json", views.mobile_api, name="mobile api"),
     ]
