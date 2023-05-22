@@ -16,3 +16,6 @@ openai
 praw
 #scikit-learn
 redis
+djangorestframework
+markdown
+django-filter
