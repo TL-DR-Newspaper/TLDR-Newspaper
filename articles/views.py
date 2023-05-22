@@ -7,8 +7,8 @@ from django.http import JsonResponse
 import random
 from django.core import serializers
 from .serializer import ArticleSerializer
-
-
+from django.db.models.functions import Now
+from datetime import datetime, timedelta, timezone
 
 
 
@@ -77,7 +77,10 @@ def random_article(request):
 
 @cache_page(60 * 15)
 def mobile_api_data(request):
-    articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')[:35]
+    articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')[:50]
+    print(articles.count())
+    items = list(articles)
+    articles = random.sample(items, 3)
     # if you want only a single random item
     data = ArticleSerializer(articles, many=True).data
     return JsonResponse(data, safe=False) 

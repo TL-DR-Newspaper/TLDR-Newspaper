@@ -2,13 +2,15 @@ from django.shortcuts import render
 from articles.models import Article
 from django.db.models import Count
 from django.views.decorators.cache import cache_page
+import random
 
 
 # Create your views here.
-#@cache_page(60 * 3)
-@cache_page(60 * 60)
+cache_page(60 * 10)
 def index(request):
     articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')
+    items = list(articles)
+    articles = random.sample(items, 50)
     #articles = Article.objects.annotate(most_sources=Count("sources")).order_by("pubdate", "most_sources")
     hero = articles[:3]
     highlighted = articles[3:21]
