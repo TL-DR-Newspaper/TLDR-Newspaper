@@ -76,8 +76,8 @@ def random_article(request):
 
 
 @cache_page(60 * 15)
-def mobile_api(request):
-    articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')[:10]
+def mobile_api_data(request):
+    articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')[:35]
     # if you want only a single random item
     data = ArticleSerializer(articles, many=True).data
     return JsonResponse(data, safe=False) 
