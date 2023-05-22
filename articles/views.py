@@ -80,7 +80,7 @@ def mobile_api_data(request):
     articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')[:50]
     print(articles.count())
     items = list(articles)
-    articles = random.sample(items, 3)
-    # if you want only a single random item
+    number_items = len(items)
+    articles = random.sample(items, number_items)
     data = ArticleSerializer(articles, many=True).data
     return JsonResponse(data, safe=False) 
