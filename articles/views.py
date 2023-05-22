@@ -75,7 +75,7 @@ def random_article(request):
     return JsonResponse(result) 
 
 
-@cache_page(60 * 15)
+@cache_page(20) #No cache for better demoing
 def mobile_api_data(request):
     articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')[:50]
     print(articles.count())
