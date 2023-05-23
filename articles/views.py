@@ -59,7 +59,7 @@ def next_article(request, slug):
 
 @cache_page(20) #No cache for better demoing
 def random_article(request):
-    articles = Article.objects.filter(published=True, created_by_ai=True)
+    articles = Article.objects.filter(published=True, created_by_ai=True )
     items = list(articles)
     number_items = 1
     articles = random.sample(items, number_items)
@@ -71,7 +71,7 @@ def random_article(request):
 def mobile_api_data_sources(request):
     articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')
     items = list(articles)
-    number_items = 15
+    number_items = 5
     articles = random.sample(items, number_items)
     data = ArticleSerializer(articles, many=True).data
     return JsonResponse(data, safe=False) 
@@ -81,7 +81,7 @@ def mobile_api_data_sources(request):
 def mobile_api_data_recent(request):
     articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-pubdate')
     items = list(articles)
-    number_items = 15
+    number_items = 5
     articles = random.sample(items, number_items)
     data = ArticleSerializer(articles, many=True).data
     return JsonResponse(data, safe=False) 
