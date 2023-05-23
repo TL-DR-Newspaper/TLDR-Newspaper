@@ -71,7 +71,7 @@ def random_article(request):
 def mobile_api_data_sources(request):
     articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')
     items = list(articles)
-    number_items = 5
+    number_items = 15
     articles = random.sample(items, number_items)
     data = ArticleSerializer(articles, many=True).data
     return JsonResponse(data, safe=False) 
@@ -81,7 +81,7 @@ def mobile_api_data_sources(request):
 def mobile_api_data_recent(request):
     articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-pubdate')
     items = list(articles)
-    number_items = 5
+    number_items = 15
     articles = random.sample(items, number_items)
     data = ArticleSerializer(articles, many=True).data
     return JsonResponse(data, safe=False) 
