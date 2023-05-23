@@ -76,11 +76,20 @@ def random_article(request):
 
 
 @cache_page(20) #No cache for better demoing
-def mobile_api_data(request):
-    articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')[:50]
-    print(articles.count())
+def mobile_api_data_sources(request):
+    articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-sources')
     items = list(articles)
-    number_items = len(items)
+    number_items = 15
+    articles = random.sample(items, number_items)
+    data = ArticleSerializer(articles, many=True).data
+    return JsonResponse(data, safe=False) 
+
+
+@cache_page(20) #No cache for better demoing
+def mobile_api_data_recent(request):
+    articles = Article.objects.filter(published=True, created_by_ai=True).order_by( '-pubdate')
+    items = list(articles)
+    number_items = 15
     articles = random.sample(items, number_items)
     data = ArticleSerializer(articles, many=True).data
     return JsonResponse(data, safe=False) 

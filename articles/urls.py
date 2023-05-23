@@ -9,5 +9,6 @@ urlpatterns = [
     path("<slug:slug>/edit", views.edit_article, name="edit"),
     path("<slug:slug>/next", views.next_article, name="next"),
     path("random/json", views.random_article, name="random"),
-    path("mobileapi/json", views.mobile_api_data, name="mobile api"),
+    path("mobileapi/sources", views.mobile_api_data_sources, name="mobile api sources"),
+    path("mobileapi/recent", views.mobile_api_data_recent, name="mobile api recent"),
     ]
