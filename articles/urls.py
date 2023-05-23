@@ -11,6 +11,4 @@ urlpatterns = [
     path("mobileapi/random", views.random_article, name="random"),
     path("mobileapi/sources", views.mobile_api_data_sources, name="mobile api sources"),
     path("mobileapi/recent", views.mobile_api_data_recent, name="mobile api recent"),
-    path("mobileapi/all", views.mobile_api_data_all, name="mobile api recent"),
-
     ]
